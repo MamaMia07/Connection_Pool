@@ -1,3 +1,5 @@
+Connection Pool
+
 Task: create your own simple solution
 
 What should be implemented:
