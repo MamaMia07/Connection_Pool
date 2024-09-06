@@ -1,5 +1,7 @@
 ﻿database: sklep
 
+
+
 TABLES:
 
 CREATE TABLE orders(
