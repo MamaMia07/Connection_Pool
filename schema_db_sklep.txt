@@ -1,6 +1,5 @@
-﻿database: sklep
-
-
+﻿schema
+database: sklep
 
 TABLES:
 
@@ -8,14 +7,15 @@ CREATE TABLE orders(
 		id SERIAL PRIMARY KEY,
 		customer_id REFERENCES customers (id) ON DELETE SET NULL, 
 		date TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP, 
-		order_value INT NOT NULL, 
+		order_value INTEGER NOT NULL, 
 		);
 
 
 CREATE TABLE order_details: 
 		id SERIAL PRIMARY KEY, 
 		order_id REFERENCES orders (id) ON DELETE CASCADE, 
-		product_id REFERENCES customers (id) ON DELETE SET NULL, 
+		product_id REFERENCES customers (id) ON DELETE SET NULL,
+		product_name 
 		amount INTEGER NOT NULL,
 		);
 
@@ -32,18 +32,20 @@ CREATE TABLE customers (
 
 CREATE TABLE products(
 	id SERIAL PRIMARY KEY,
+	product_no INTEGER UNIQUE NOT NULL,
 	product_name VARCHAR(100) NOT NULL,
 	manufacturer REFERENCES manufacturers (id) ON DELETE SET NULL,
-	price ...........
+	price NUMERIC NOT NULL CHECK (price > 0),
 	);
 	
 
 CREATE TABLE manufacturers (
 		id SERIAL PRIMARY KEY,
-		name VARCHAR(50) NOT NULL
+		name VARCHAR(50) NOT NULL UNIQUE,
 		);
 
 CREATE TABLE warehouse (
 		id SERIAL PRIMARY KEY,
 		product_id REFERENCES productss (id) ON DELETE CASCADE,
-		amount INTEGER,);
+		amount INTEGER
+		);
