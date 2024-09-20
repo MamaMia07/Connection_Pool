@@ -1,6 +1,6 @@
 Connection Pool
 
-Task: create your own simple solution
+Task: create your own simple solution of connection pool.
 
 What should be implemented:
 
@@ -12,4 +12,4 @@ What should be implemented:
 
 - connections during which an error occurred should be deleted, a new one should be created in their place
 
-Create tool to test this library.
+Create tool to test your solution.
