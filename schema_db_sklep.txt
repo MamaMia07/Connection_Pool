@@ -11,7 +11,7 @@ CREATE TABLE orders(
 		);
 
 
-CREATE TABLE order_details: 
+CREATE TABLE ordered_prod: 
 		id SERIAL PRIMARY KEY, 
 		order_id REFERENCES orders (id) ON DELETE CASCADE, 
 		product_id REFERENCES customers (id) ON DELETE SET NULL,
