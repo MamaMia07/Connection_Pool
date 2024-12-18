@@ -14,8 +14,7 @@ CREATE TABLE orders(
 CREATE TABLE ordered_prod: 
 		id SERIAL PRIMARY KEY, 
 		order_id REFERENCES orders (id) ON DELETE CASCADE, 
-		product_id REFERENCES customers (id) ON DELETE SET NULL,
-		product_name 
+		product_id REFERENCES products (id) ON DELETE SET NULL,
 		amount INTEGER NOT NULL,
 		);
 
