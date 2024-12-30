@@ -1,0 +1,33 @@
+database : accountancy
+
+CREATE TABLE customers (
+		id SERIAL PRIMARY KEY,
+		email VARCHAR (50) UNIQUE NOT NULL ,
+		name VARCHAR(30) NOT NULL,
+		lastname VARCHAR(60) NOT NULL,
+		address VARCHAR(60) NOT NULL,
+		city VARCHAR (30) NOT NULL,
+		zip_code VARCHAR (6) NOT NULL 
+		);
+		
+		#CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$')
+		# CHECK (zip_code ~ '^[0-9]{2}-[0-9]{3}$')
+		
+
+
+CREATE TABLE accounts (
+	id SERIAL PRIMARY KEY,
+	account_number INTEGER UNIQUE NOT NULL,
+	customer_id INTEGER REFERENCES customers(id) ON DELETE SET NULL,
+	balance INTEGER NOT NULL CONSTRAINT not_negative_balance CHECK (balance >= 0)
+	);
+
+
+
+CREATE TABLE transactions (
+	id SERIAL PRIMARY KEY,
+	from_account INTEGER REFERENCES accounts(account_number) ON DELETE SET NULL,
+	to_account INTEGER REFERENCES accounts(account_number) ON DELETE SET NULL,
+	date TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+	amount NUMERIC NOT NULL CONSTRAINT positive_amount CHECK (amount > 0)
+	);
